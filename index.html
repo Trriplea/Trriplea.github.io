@@ -49,7 +49,14 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* iOS Safari uses <html> background for rubber-band overscroll area */
+  background: var(--bg);
+  transition: background-color .35s ease;
+  /* Prevent pull-to-refresh gap on supporting browsers (Chrome/Android) */
+  overscroll-behavior-y: none;
+}
 body {
   margin: 0;
   background: var(--bg);
@@ -60,6 +67,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
   transition: background-color .35s ease, color .35s ease;
 }
 
@@ -227,6 +235,8 @@ body { cursor: none; }
 @media (max-width: 768px) {
   .nav-burger { display: flex; }
   .email-pill, .nav-link-cta, .theme-toggle { display: none !important; }
+  /* Push nav content below Dynamic Island / status bar */
+  .nav { padding-top: calc(18px + env(safe-area-inset-top, 0px)); }
 }
 .nav-burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav-burger.is-open span:nth-child(2) { transform: translateY(-6.5px) rotate(-45deg); }
