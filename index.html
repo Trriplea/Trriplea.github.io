@@ -51,10 +51,9 @@
 * { box-sizing: border-box; }
 html {
   scroll-behavior: smooth;
-  /* iOS Safari uses <html> background for rubber-band overscroll area */
+  overflow-x: hidden; /* moved from body — overflow on body breaks position:fixed on iOS Safari */
   background: var(--bg);
   transition: background-color .35s ease;
-  /* Prevent pull-to-refresh gap on supporting browsers (Chrome/Android) */
   overscroll-behavior-y: none;
 }
 body {
@@ -66,7 +65,6 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
   overscroll-behavior-y: none;
   transition: background-color .35s ease, color .35s ease;
 }
