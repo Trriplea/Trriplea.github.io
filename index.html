@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alexander Ryazantsev — Senior Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -235,23 +235,6 @@ body { cursor: none; }
 @media (max-width: 768px) {
   .nav-burger { display: flex; }
   .email-pill, .nav-link-cta, .theme-toggle { display: none !important; }
-  /* Push nav content below Dynamic Island / status bar */
-  .nav { padding-top: calc(18px + env(safe-area-inset-top, 0px)); }
-  /*
-    Safari can expose a small rubber-band area above top:0 during scroll.
-    Extend an opaque nav-owned layer into that region so content never bleeds through.
-  */
-  .nav::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 100%;
-    height: calc(env(safe-area-inset-top, 0px) + 32px);
-    background: var(--bg);
-    pointer-events: none;
-  }
-  #safe-area-cap { display: none; }
 }
 .nav-burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav-burger.is-open span:nth-child(2) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -1745,22 +1728,10 @@ footer.foot {
 .tweaks-segs button { padding: 8px 12px; font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .tweaks-segs button.is-active { background: var(--fg); color: var(--bg); }
 
-/* Dynamic Island / status-bar safe-area blocker */
-#safe-area-cap {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: env(safe-area-inset-top, 0px);
-  background: var(--bg);
-  z-index: 9999;
-  transition: background-color .35s ease;
-  pointer-events: none;
-}
 
 </style>
 </head>
 <body data-theme="dark">
-<!-- Safe-area cap: covers Dynamic Island / status-bar zone above the nav on iOS -->
-<div id="safe-area-cap"></div>
 
 <!-- Custom cursor -->
 <div class="cursor" id="cursor"></div>
