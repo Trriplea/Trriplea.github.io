@@ -237,6 +237,21 @@ body { cursor: none; }
   .email-pill, .nav-link-cta, .theme-toggle { display: none !important; }
   /* Push nav content below Dynamic Island / status bar */
   .nav { padding-top: calc(18px + env(safe-area-inset-top, 0px)); }
+  /*
+    Safari can expose a small rubber-band area above top:0 during scroll.
+    Extend an opaque nav-owned layer into that region so content never bleeds through.
+  */
+  .nav::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: calc(env(safe-area-inset-top, 0px) + 32px);
+    background: var(--bg);
+    pointer-events: none;
+  }
+  #safe-area-cap { display: none; }
 }
 .nav-burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav-burger.is-open span:nth-child(2) { transform: translateY(-6.5px) rotate(-45deg); }
