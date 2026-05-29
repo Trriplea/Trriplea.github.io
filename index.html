@@ -112,7 +112,7 @@ body { cursor: none; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 600;
-  padding: calc(18px + env(safe-area-inset-top, 0px)) var(--pad-x) 18px;
+  padding: 18px var(--pad-x);
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px;
   backdrop-filter: blur(14px) saturate(120%);
@@ -120,14 +120,6 @@ body { cursor: none; }
   background: color-mix(in oklab, var(--bg) 70%, transparent);
   border-bottom: 1px solid var(--line);
   transition: background-color .35s ease, border-color .35s ease;
-}
-/* Solid cap for Dynamic Island / status bar safe area — blocks content bleed-through */
-.nav::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: env(safe-area-inset-top, 0px);
-  background: var(--bg);
 }
 .nav-brand {
   display: flex; align-items: center; gap: 10px;
@@ -1728,9 +1720,22 @@ footer.foot {
 .tweaks-segs button { padding: 8px 12px; font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .tweaks-segs button.is-active { background: var(--fg); color: var(--bg); }
 
+/* Dynamic Island / status-bar safe-area blocker */
+#safe-area-cap {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--bg);
+  z-index: 9999;
+  transition: background-color .35s ease;
+  pointer-events: none;
+}
+
 </style>
 </head>
 <body data-theme="dark">
+<!-- Safe-area cap: covers Dynamic Island / status-bar zone above the nav on iOS -->
+<div id="safe-area-cap"></div>
 
 <!-- Custom cursor -->
 <div class="cursor" id="cursor"></div>
