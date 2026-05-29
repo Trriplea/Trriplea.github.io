@@ -51,7 +51,6 @@
 * { box-sizing: border-box; }
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden; /* moved from body — overflow on body breaks position:fixed on iOS Safari */
   background: var(--bg);
   transition: background-color .35s ease;
   overscroll-behavior-y: none;
@@ -65,6 +64,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip; /* clip vs hidden: doesn't create scroll container → position:fixed works on iOS */
   overscroll-behavior-y: none;
   transition: background-color .35s ease, color .35s ease;
 }
@@ -126,6 +126,9 @@ body { cursor: none; }
   background: color-mix(in oklab, var(--bg) 70%, transparent);
   border-bottom: 1px solid var(--line);
   transition: background-color .35s ease, border-color .35s ease;
+  /* Force GPU compositing layer — fixes position:fixed drift on iOS Safari */
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
 }
 .nav-brand {
   display: flex; align-items: center; gap: 10px;
