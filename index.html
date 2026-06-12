@@ -121,9 +121,10 @@ body { cursor: none; }
   padding: 18px var(--pad-x);
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px;
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
-  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  /* No backdrop-filter: it forces a GPU layer that iOS Safari detaches from
+     the viewport top during address-bar scroll, opening a gap above the nav.
+     Near-opaque solid background instead — content doesn't ghost through. */
+  background: color-mix(in oklab, var(--bg) 90%, transparent);
   border-bottom: 1px solid var(--line);
   transition: background-color .35s ease, border-color .35s ease;
 }
