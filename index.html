@@ -64,7 +64,10 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: clip; /* clip vs hidden: doesn't create scroll container → position:fixed works on iOS */
+  /* No overflow-x clip here: on iOS Safari, overflow on <body> makes it the
+     scroll container, which pins position:fixed nav below the address bar
+     (constant gap above the header). There is no horizontal overflow to clip
+     anymore — the marquee that needed it was removed. */
   overscroll-behavior-y: none;
   transition: background-color .35s ease, color .35s ease;
 }
