@@ -277,7 +277,7 @@ body.mob-menu-open .nav {
   transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
-/* Single-link nav: vertically centered, full width */
+/* Mobile nav: vertically centered, full width */
 .mobile-menu-nav {
   flex: 1;
   display: flex;
@@ -294,7 +294,7 @@ body.mob-menu-open .nav {
   text-align: center;
 }
 
-/* ABOUT — dominant, centered, editorial */
+/* Mobile menu links — dominant, centered, editorial */
 .mobile-menu-link {
   display: block;
   font-family: var(--font-display);
@@ -313,14 +313,22 @@ body.mob-menu-open .nav {
     opacity   0.55s ease;
 }
 /* Reveal on open */
-.mobile-menu.is-open .mm-link-wrap:nth-child(1) .mobile-menu-link {
+.mobile-menu.is-open .mobile-menu-link {
   transform: translateY(0);
   opacity: 1;
+}
+.mobile-menu.is-open .mm-link-wrap:nth-child(1) .mobile-menu-link {
   transition-delay: 0.14s;
+}
+.mobile-menu.is-open .mm-link-wrap:nth-child(2) .mobile-menu-link {
+  transition-delay: 0.2s;
 }
 /* Hide on close */
 .mobile-menu:not(.is-open) .mm-link-wrap:nth-child(1) .mobile-menu-link {
   transition-delay: 0.08s;
+}
+.mobile-menu:not(.is-open) .mm-link-wrap:nth-child(2) .mobile-menu-link {
+  transition-delay: 0.04s;
 }
 .mobile-menu-link:active { opacity: 0.4; }
 
@@ -825,10 +833,17 @@ section { position: relative; }
   grid-template-columns: 1.05fr 2fr;
   gap: 80px;
 }
-.exp-cta a { grid-column: 2; justify-self: start; }
+.exp-cta-actions {
+  grid-column: 2;
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 @media (max-width: 1100px) {
   .exp-cta { grid-template-columns: 1fr; gap: 0; }
-  .exp-cta a { grid-column: 1; }
+  .exp-cta-actions { grid-column: 1; }
 }
 .experience {
   display: grid;
@@ -1759,6 +1774,7 @@ footer.foot {
   <div class="nav-links">
     <a href="#about" data-cursor="hover">Обо мне</a>
     <a href="#experience" data-cursor="hover">Опыт</a>
+    <a href="Alexander_Ryazantsev_Portfolio.pdf" target="_blank" rel="noopener noreferrer" data-cursor="hover">Портфолио</a>
   </div>
   <div class="nav-right">
     <a href="#contact" class="nav-link-cta" data-cursor="hover">Связаться</a>
@@ -1782,6 +1798,9 @@ footer.foot {
   <nav class="mobile-menu-nav" aria-label="Навигация по сайту">
     <div class="mm-link-wrap">
       <a href="#about" class="mobile-menu-link" tabindex="-1">Обо мне</a>
+    </div>
+    <div class="mm-link-wrap">
+      <a href="Alexander_Ryazantsev_Portfolio.pdf" target="_blank" rel="noopener noreferrer" class="mobile-menu-link" tabindex="-1">Портфолио</a>
     </div>
   </nav>
   <div class="mobile-menu-divider" aria-hidden="true"></div>
@@ -1929,7 +1948,10 @@ footer.foot {
     </div><!-- /acc-inner -->
   </div><!-- /acc-body -->
   <div class="exp-cta" data-reveal>
-    <a href="Alexander_Ryazantsev_CV_RU.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pill" data-cursor="hover">Резюме</a>
+    <div class="exp-cta-actions">
+      <a href="Alexander_Ryazantsev_CV_RU.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pill" data-cursor="hover">Резюме</a>
+      <a href="Alexander_Ryazantsev_Portfolio.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pill" data-cursor="hover">Портфолио</a>
+    </div>
   </div>
 </section>
 
